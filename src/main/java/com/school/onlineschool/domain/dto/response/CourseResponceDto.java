@@ -1,4 +1,9 @@
 package com.school.onlineschool.domain.dto.response;
 
-public record CourseResponceDto() {
+import lombok.Builder;
+
+@Builder
+public record CourseResponceDto(
+
+) {
 }

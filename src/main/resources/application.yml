@@ -1,1 +1,25 @@
-spring.application.name=onlineschool
+spring:
+  application:
+    name: onlineschool
+
+  #database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/onlineschool
+    username: suhrob
+    password: 123
+
+  #jpa
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+  #liquibase
+
+  #server
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.yml
+server:
+  port: 8082

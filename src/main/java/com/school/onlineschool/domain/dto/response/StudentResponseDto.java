@@ -1,4 +1,10 @@
 package com.school.onlineschool.domain.dto.response;
 
-public record StudentResponseDto() {
+import java.util.List;
+
+public record StudentResponseDto(
+        Long id,
+        String name,
+        List<StudentDetailsResponseDto> studentDetails
+) {
 }

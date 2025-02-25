@@ -1,4 +1,11 @@
 package com.school.onlineschool.domain.dto.request;
 
-public record StudentRequestDto() {
+import lombok.Builder;
+
+@Builder
+public record StudentRequestDto(
+        String name,
+        String phoneNumber
+
+) {
 }

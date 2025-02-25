@@ -1,4 +1,4 @@
-package com.minimarket.domain.dto;
+package com.school.onlineschool.domain.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
