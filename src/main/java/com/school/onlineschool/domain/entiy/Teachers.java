@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import org.hibernate.annotations.CurrentTimestamp;
 
 import javax.naming.Name;
 import java.io.Serializable;
@@ -23,6 +24,7 @@ public class Teachers implements Serializable {
     private String name;
 
     @Column(name = "created_date")
+    @CurrentTimestamp
     private LocalDateTime createdDate;
 
 }
