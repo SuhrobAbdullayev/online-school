@@ -3,7 +3,7 @@ package com.school.onlineschool.domain.dto.response;
 import lombok.Builder;
 
 @Builder
-public record CourseResponceDto(
+public record CourseResponseDto(
         Long id,
         String name
 ) {

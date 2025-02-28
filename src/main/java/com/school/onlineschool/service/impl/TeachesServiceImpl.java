@@ -1,12 +1,13 @@
 package com.school.onlineschool.service.impl;
 
 import com.school.onlineschool.domain.dto.request.TeacherRequestDto;
-import com.school.onlineschool.domain.dto.response.CourseResponceDto;
+
+import com.school.onlineschool.domain.dto.response.CourseResponseDto;
 import com.school.onlineschool.domain.dto.response.StudentNamesResponceDto;
 import com.school.onlineschool.domain.dto.response.TeacherResponseDto;
-import com.school.onlineschool.domain.entiy.Courses;
+
 import com.school.onlineschool.domain.entiy.Teachers;
-import com.school.onlineschool.repository.CouseRepository;
+import com.school.onlineschool.repository.CourseRepository;
 import com.school.onlineschool.repository.StudentsRepository;
 import com.school.onlineschool.repository.TeachersRepository;
 import com.school.onlineschool.service.TeachersService;
@@ -22,7 +23,7 @@ public class TeachesServiceImpl implements TeachersService {
 
     private final TeachersRepository teachersRepository;
     private final StudentsRepository studentsRepository;
-    private final CouseRepository couseRepository;
+    private final CourseRepository courseRepository;
 
     @Override
     public Long createTeacher(TeacherRequestDto dto) {
@@ -36,7 +37,7 @@ public class TeachesServiceImpl implements TeachersService {
     @Override
     public TeacherResponseDto getTeacher(Long id) {
         Optional<Teachers> teachers = teachersRepository.findById(id);
-        CourseResponceDto course = couseRepository.findCourseByTeacherId(teachers.get().getId());
+        CourseResponseDto course = courseRepository.findCourseByTeacherId(teachers.get().getId());
 
         List<StudentNamesResponceDto> studentNames = studentsRepository.findStudentNameByCourseId(course.id());
 
