@@ -4,6 +4,7 @@ import lombok.Builder;
 
 @Builder
 public record CourseResponceDto(
-
+        Long id,
+        String name
 ) {
 }

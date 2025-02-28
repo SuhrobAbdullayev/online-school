@@ -5,10 +5,11 @@ import lombok.Builder;
 import java.util.List;
 
 @Builder
-public record StudentResponseDto(
+public record TeacherResponseDto(
         Long id,
         String name,
-        String phoneNumber,
-        List<StudentDetailsResponseDto> studentDetails
+        String courseName,
+        List<StudentNamesResponceDto> studentNamesResponceDtos
 ) {
+
 }

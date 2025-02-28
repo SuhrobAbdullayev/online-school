@@ -9,8 +9,8 @@ import com.school.onlineschool.repository.StudentsRepository;
 import com.school.onlineschool.service.StudentsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,11 +56,33 @@ public class StudentServiceImpl implements StudentsService {
                 .map(courseName -> StudentDetailsResponseDto.builder().courseName(courseName).build())
                 .toList()
         );
-
     }
 
     @Override
-    public List<StudentResponseDto> getAll(MultiValueMap<String, Object> filter) {
-        return List.of();
+    public List<StudentResponseDto> getAll() {
+        List<Students> students = studentsRepository.findAll();
+
+        if (students.isEmpty()){
+            throw new RuntimeException("there are no students in database");
+        }
+        List<StudentResponseDto> studentResponseDtos = new ArrayList<>();
+
+        for (Students student : students){
+            List<String> courseList = enrollmentsRepository.findCourseByStudentId(student.getId());
+
+            List<StudentDetailsResponseDto> studentDetails = courseList.stream()
+                    .map(courseName -> StudentDetailsResponseDto.builder().courseName(courseName).build())
+                    .toList();
+
+            StudentResponseDto studentResponse = StudentResponseDto.builder()
+                    .id(student.getId())
+                    .name(student.getName())
+                    .phoneNumber(student.getPhoneNumber())
+                    .studentDetails(studentDetails)
+                    .build();
+            studentResponseDtos.add(studentResponse);
+        }
+
+        return studentResponseDtos;
     }
 }

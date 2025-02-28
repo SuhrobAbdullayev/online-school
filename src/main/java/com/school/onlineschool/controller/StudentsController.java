@@ -33,6 +33,12 @@ public class StudentsController {
         return ResponseDTO.ok(studentsService.getStudent(id));
     }
 
+    @GetMapping("/all")
+    public ResponseDTO<List<StudentResponseDto>> getAlStudents(){
+        return ResponseDTO.ok(studentsService.getAll());
+    }
+
+
 
 
 }
