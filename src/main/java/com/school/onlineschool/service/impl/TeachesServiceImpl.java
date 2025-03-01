@@ -2,11 +2,12 @@ package com.school.onlineschool.service.impl;
 
 import com.school.onlineschool.domain.dto.request.TeacherRequestDto;
 
-import com.school.onlineschool.domain.dto.response.CourseResponseDto;
-import com.school.onlineschool.domain.dto.response.StudentNamesResponceDto;
+import com.school.onlineschool.domain.dto.response.StudentNamesResponseDto;
 import com.school.onlineschool.domain.dto.response.TeacherResponseDto;
 
+import com.school.onlineschool.domain.entiy.Courses;
 import com.school.onlineschool.domain.entiy.Teachers;
+import com.school.onlineschool.exeption.EntityNotFound;
 import com.school.onlineschool.repository.CourseRepository;
 import com.school.onlineschool.repository.StudentsRepository;
 import com.school.onlineschool.repository.TeachersRepository;
@@ -15,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,16 +36,18 @@ public class TeachesServiceImpl implements TeachersService {
 
     @Override
     public TeacherResponseDto getTeacher(Long id) {
-        Optional<Teachers> teachers = teachersRepository.findById(id);
-        CourseResponseDto course = courseRepository.findCourseByTeacherId(teachers.get().getId());
+        Teachers teachers = teachersRepository.findById(id).orElseThrow(
+                () ->  new EntityNotFound("Teacher with the id is not exsist")
+        );
+        Courses course = courseRepository.findCoursesByTeacherId(teachers.getId());
 
-        List<StudentNamesResponceDto> studentNames = studentsRepository.findStudentNameByCourseId(course.id());
+        List<StudentNamesResponseDto> studentNames = studentsRepository.findStudentNameByCourseId(course.getId());
 
         TeacherResponseDto teacherResponse = TeacherResponseDto.builder()
-                .id(teachers.get().getId())
-                .name(teachers.get().getName())
-                .courseName(course.name())
-                .studentNamesResponceDtos(studentNames)
+                .id(teachers.getId())
+                .name(teachers.getName())
+                .courseName(course.getName())
+                .students(studentNames)
                 .build();
 
         return teacherResponse;

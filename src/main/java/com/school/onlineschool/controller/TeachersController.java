@@ -24,7 +24,7 @@ public class TeachersController {
         return ResponseDTO.ok(teachersService.createTeacher(teacherRequestDto));
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseDTO<TeacherResponseDto> getTeacher(@PathVariable Long id){
         return ResponseDTO.ok(teachersService.getTeacher(id));
     }

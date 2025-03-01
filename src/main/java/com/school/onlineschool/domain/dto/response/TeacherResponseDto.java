@@ -9,7 +9,7 @@ public record TeacherResponseDto(
         Long id,
         String name,
         String courseName,
-        List<StudentNamesResponceDto> studentNamesResponceDtos
+        List<StudentNamesResponseDto> students
 ) {
 
 }
