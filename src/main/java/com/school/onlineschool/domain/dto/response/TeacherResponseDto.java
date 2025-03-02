@@ -8,8 +8,7 @@ import java.util.List;
 public record TeacherResponseDto(
         Long id,
         String name,
-        String courseName,
-        List<StudentNamesResponseDto> students
+        List<CourseResponseDto> courses
 ) {
 
 }
