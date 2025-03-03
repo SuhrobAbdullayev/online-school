@@ -1,6 +1,5 @@
 package com.school.onlineschool.repository;
 
-import com.school.onlineschool.domain.dto.response.CourseResponseDto;
 import com.school.onlineschool.domain.entiy.Courses;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
