@@ -33,7 +33,6 @@ public class TeachesServiceImpl implements TeachersService {
         Teachers teachers = new Teachers();
         teachers.setName(dto.name());
         return teachersRepository.save(teachers).getId();
-
     }
 
     @Override
