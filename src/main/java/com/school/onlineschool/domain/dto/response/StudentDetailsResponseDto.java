@@ -1,10 +1,11 @@
 package com.school.onlineschool.domain.dto.response;
 
 import lombok.Builder;
+import lombok.Data;
 
 @Builder
-public record StudentDetailsResponseDto(
-        String courseName
-) {
+@Data
+public class StudentDetailsResponseDto{
+    private String courseName;
 
 }

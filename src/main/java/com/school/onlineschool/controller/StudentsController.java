@@ -24,21 +24,29 @@ public class StudentsController {
     private final StudentsService studentsService;
 
     @PostMapping
-    public ResponseDTO<Long> createStudent(@RequestBody StudentRequestDto studentRequestDto){
+    public ResponseDTO<Long> createStudent(@RequestBody StudentRequestDto studentRequestDto) {
         return ResponseDTO.ok(studentsService.createStudent(studentRequestDto));
     }
 
     @GetMapping()
-    public ResponseDTO<StudentResponseDto> getStudent(@RequestParam Long id){
+    public ResponseDTO<StudentResponseDto> getStudent(@RequestParam Long id) {
         return ResponseDTO.ok(studentsService.getStudent(id));
     }
 
     @GetMapping("/all")
-    public ResponseDTO<List<StudentResponseDto>> getAlStudents(){
+    public ResponseDTO<List<StudentResponseDto>> getAlStudents() {
         return ResponseDTO.ok(studentsService.getAll());
     }
 
+    @GetMapping("/name")
+    public ResponseDTO<List<StudentResponseDto>> findByName(@RequestParam String name) {
 
+        MultiValueMap<String, Object> filter = new LinkedMultiValueMap<>();
+
+        filter.add("name", name);
+
+        return ResponseDTO.ok(studentsService.getStudentByName(filter), "Students have found successfully!");
+    }
 
 
 }
