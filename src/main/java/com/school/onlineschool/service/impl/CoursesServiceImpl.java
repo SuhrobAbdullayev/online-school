@@ -4,7 +4,7 @@ import com.school.onlineschool.domain.dto.response.CourseResponseDto;
 import com.school.onlineschool.domain.dto.response.StudentNamesResponseDto;
 import com.school.onlineschool.domain.entiy.Courses;
 import com.school.onlineschool.repository.CourseRepository;
-import com.school.onlineschool.repository.StudentsRepository;
+import com.school.onlineschool.repository.UserRepository;
 import com.school.onlineschool.service.CoursesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,14 +17,14 @@ import java.util.List;
 public class CoursesServiceImpl implements CoursesService {
 
     private final CourseRepository courseRepository;
-    private final StudentsRepository studentsRepository;
+    private final UserRepository userRepository;
 
     @Override
     public List<CourseResponseDto> getAllCourses() {
         List<CourseResponseDto> courseResponseDtos = new ArrayList<>();
         for (Courses course : courseRepository.findAll()){
 
-            List<StudentNamesResponseDto> studentNames = studentsRepository.findStudentNameByCourseId(course.getId());
+            List<StudentNamesResponseDto> studentNames = userRepository.findStudentNameByCourseId(course.getId());
 
             CourseResponseDto dto = CourseResponseDto.builder()
                     .name(course.getName())

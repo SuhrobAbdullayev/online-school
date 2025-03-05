@@ -9,6 +9,6 @@ public record EnrollmentResposeDto(
         Long id,
         String name,
         String phoneNumber,
-        List<StudentDetailsResponseDto> studentDetails
+        List<UserDetailsResponseDto> studentDetails
 ) {
 }

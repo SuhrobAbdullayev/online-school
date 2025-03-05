@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS course
 create table if not exists enrollment
 (
     id           serial primary key,
-    student_id   bigint not null,
+    user_id      bigint not null,
     course_id    bigint not null,
     created_date timestamp default now()
 );
@@ -36,7 +36,7 @@ create table if not exists enrollment
 create table if not exists marks
 (
     id           serial primary key,
-    student_id   bigint not null,
+    user_id      bigint not null,
     course_id    bigint not null,
     mark         int    not null,
     created_date timestamp default now()

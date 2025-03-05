@@ -10,8 +10,8 @@ import com.school.onlineschool.domain.entiy.Courses;
 import com.school.onlineschool.domain.entiy.Teachers;
 import com.school.onlineschool.exeption.EntityNotFound;
 import com.school.onlineschool.repository.CourseRepository;
-import com.school.onlineschool.repository.StudentsRepository;
 import com.school.onlineschool.repository.TeachersRepository;
+import com.school.onlineschool.repository.UserRepository;
 import com.school.onlineschool.service.TeachersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ import java.util.List;
 public class TeachesServiceImpl implements TeachersService {
 
     private final TeachersRepository teachersRepository;
-    private final StudentsRepository studentsRepository;
+    private final UserRepository userRepository;
     private final CourseRepository courseRepository;
 
     @Override
@@ -44,7 +44,7 @@ public class TeachesServiceImpl implements TeachersService {
         List<CourseResponseDto> courseResponseDtos = new ArrayList<>();
         for (Courses course : courses){
             CourseResponseDto courseResponseDto = new CourseResponseDto();
-            List<StudentNamesResponseDto> studentNames = studentsRepository.findStudentNameByCourseId(course.getId());
+            List<StudentNamesResponseDto> studentNames = userRepository.findStudentNameByCourseId(course.getId());
             courseResponseDto.setName(course.getName());
             courseResponseDto.setPrice(course.getPrice());
             courseResponseDto.setStudents(studentNames);

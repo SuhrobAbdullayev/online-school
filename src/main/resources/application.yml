@@ -23,3 +23,19 @@ spring:
     change-log: classpath:/db/changelog/changelog-master.yml
 server:
   port: 8082
+
+  #jwt
+jwt:
+  token:
+    secret: c3Vocm9ic2VjcmV0
+    validity: 86400000
+
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    tags-sorter: alpha
+    display-request-duration: true
+    operations-sorter: method
+    path: /docs
+    default-models-expand-depth: -1

@@ -5,7 +5,7 @@ import com.school.onlineschool.domain.dto.request.EnrollmentRequestDto;
 import com.school.onlineschool.domain.entiy.Enrollments;
 import com.school.onlineschool.repository.CourseRepository;
 import com.school.onlineschool.repository.EnrollmentsRepository;
-import com.school.onlineschool.repository.StudentsRepository;
+import com.school.onlineschool.repository.UserRepository;
 import com.school.onlineschool.service.EnrollmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service;
 public class EnrollmentServiceImpl implements EnrollmentService {
 
     private final EnrollmentsRepository enrollmentsRepository;
-    private final StudentsRepository studentsRepository;
+    private final UserRepository userRepository;
     private final CourseRepository courseRepository;
 
     @Override
     public void createEnrollment(EnrollmentRequestDto enrollmentRequestDto) {
-        studentsRepository.findById(enrollmentRequestDto.studentId()).orElseThrow(
+        userRepository.findById(enrollmentRequestDto.studentId()).orElseThrow(
                 () -> new RuntimeException("There is not such student in database")
         );
         for (EnrollmentDetailsRequestDto detailsDto : enrollmentRequestDto.courseIds()){

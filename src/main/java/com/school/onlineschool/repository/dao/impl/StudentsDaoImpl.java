@@ -1,7 +1,7 @@
 package com.school.onlineschool.repository.dao.impl;
 
 
-import com.school.onlineschool.domain.entiy.Students;
+import com.school.onlineschool.domain.entiy.User;
 import com.school.onlineschool.repository.dao.StudentsDao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -19,7 +19,7 @@ public class StudentsDaoImpl implements StudentsDao {
 
 
     @Override
-    public List<Students> findStudentsbyName(MultiValueMap<String, Object> filter) {
+    public List<User> findStudentsbyName(MultiValueMap<String, Object> filter) {
         StringBuilder where = new StringBuilder();
 
         if (filter.containsKey("name") && filter.getFirst("name") != null) {
@@ -28,10 +28,10 @@ public class StudentsDaoImpl implements StudentsDao {
 
         String sql = """
                  SELECT * 
-                 FROM students
+                 FROM users
                  """ + where;
 
-        Query query = entityManager.createNativeQuery(sql, Students.class);
+        Query query = entityManager.createNativeQuery(sql, User.class);
 
         if (filter.containsKey("name") && filter.getFirst("name") != null) {
             query.setParameter("name", "%" + filter.getFirst("name").toString() + "%");
